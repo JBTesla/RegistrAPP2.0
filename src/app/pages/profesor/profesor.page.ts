@@ -102,7 +102,7 @@ async generarCodigo(cod_class){
   async cargando(mensaje){
     const loading = await this.loadingCtrl.create({
       message: mensaje,
-      duration: 1000
+      duration: 2000
     });
     loading.present();
   }
