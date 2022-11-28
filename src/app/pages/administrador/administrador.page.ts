@@ -47,6 +47,7 @@ export class AdministradorPage implements OnInit {
   
   usuarios: any[] = [];
   KEY_USUARIOS = 'usuarios';
+  v_agregar:boolean=false;
 
   constructor(private usuarioService: UserService,
     private alertController: AlertController,
@@ -95,6 +96,7 @@ async registrar() {
   console.log(respuesta)
   if (respuesta) {
     alert('Usuario registrado!');
+    this.v_agregar=true;
     this.usuario.reset();
     this.verificar_password = '';
     this.cargarUsuarios();

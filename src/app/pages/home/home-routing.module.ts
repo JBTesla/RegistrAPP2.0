@@ -20,7 +20,7 @@ const routes: Routes = [
         loadChildren: () => import('../profesor/profesor.module').then(m => m.ProfesorPageModule),
       },
       {
-        path: 'perfil/:id',
+        path: 'perfil/:rut',
         loadChildren: () => import('../perfil/perfil.module').then(m => m.PerfilPageModule),
       },
       {

@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+/* import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { RegistrarPage } from './registrar.page';
@@ -22,3 +22,4 @@ describe('RegistrarPage', () => {
     expect(component).toBeTruthy();
   });
 });
+ */

@@ -17,7 +17,7 @@ export class AlumnoPage implements OnInit {
     private fireService:FireService) { }
   rut: string;
   clases:any[]=[];
-  clase: any;
+  clase: any[]=[];
   KEY_CLASES = 'clases'
 
   asistencias: any[]=[];
@@ -32,7 +32,7 @@ export class AlumnoPage implements OnInit {
     await this.cargarAsistencias();
   }
 
-async cargarClases(){
+cargarClases(){
   this.fireService.obtenerClases('clases').subscribe(
    (data:any) => {
      this.clases = [];
@@ -61,9 +61,10 @@ cargarAsistencias(){
   this.fireService.obtenerAsistencia('asistencia',).
 } */
 
-ingresarAsistencia(){
+ingresarAsistencia(asisntenciaAl){
   //console.log(this.rut): verificar el rut
-    this.fireService.agregarAlumno(this.KEY_ASISTENCIAS, this.Qrcode,this.rut);
+    this.clase = this.clases.find(u => u.cod_clase == this.Qrcode)
+    this.fireService.agregarAlumno('asistencia', asisntenciaAl ,this.rut);
     this.cargando('Ingresando a la asistencia...');
 }
 async cargando(mensaje){

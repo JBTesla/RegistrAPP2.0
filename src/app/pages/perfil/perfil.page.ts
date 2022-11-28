@@ -9,12 +9,12 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./perfil.page.scss'],
 })
 export class PerfilPage implements OnInit {
-  id:string='';
+  rut:string='';
   usuario: any []=[];
   usuarios:any [] =[];
 /*   KEY_USUARIOS = 'usuarios'; */
 
-  clase: any = {};
+  clase: any []= [];
   clases:any [] =[];
 /*   KEY_CLASES = 'clases'; */
 
@@ -23,10 +23,10 @@ export class PerfilPage implements OnInit {
     private fireService:FireService) {}
 
 ngOnInit() {
-  this.id = this.activatedRoute.snapshot.paramMap.get('id');
-  this.clase = this.fireService.obtenerClase('clases', this.id);
+  this.rut = this.activatedRoute.snapshot.paramMap.get('rut');
+/*   this.clase = this.fireService.obtenerClase('clases', this.rut); */
   this.cargarUsuario();
- 
+  this.cargarClase();
   console.log(this.usuario)
   }
 
@@ -38,11 +38,26 @@ cargarUsuario(){
         let usuarioJson = u.payload.doc.data();
         usuarioJson['id'] = u.payload.doc.id;
         this.usuarios.push(usuarioJson);
-        this.usuario = this.usuarios.find(u => u.id = this.id)
+        this.usuario = this.usuarios.find(u => u.rut == this.rut)
         console.log(this.usuario)
         //console.log(u.payload.doc.data());
       }
     }
   );
+}
+cargarClase(){
+  this.fireService.obtenerClases('clases').subscribe(
+   (data:any) => {
+     this.clases = [];
+     for(let c of data){
+       let claseJson = c.payload.doc.data();
+       claseJson['id'] = c.payload.doc.id;
+       this.clases.push(claseJson);
+       this.clase = this.clases.find(c => c.docente == this.rut);
+       console.log
+/*        this.claseD = this.clases.find(c => c.docente == this.rut); */
+     }
+   }
+ );
 }
 }

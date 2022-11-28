@@ -21,8 +21,11 @@ export class ProfesorPage implements OnInit {
 
   //variobles para clases
   clases: any[]=[];
+  claseD: any[]=[];
 
-  clase: any;
+  clase: any ;
+
+  prueba:any;
 
 
   usuarios:any[]=[];
@@ -65,7 +68,8 @@ export class ProfesorPage implements OnInit {
           let claseJson = c.payload.doc.data();
           claseJson['id'] = c.payload.doc.id;
           this.clases.push(claseJson);
-          this.clase = this.clases.filter(c => c.docente == this.rut)
+          this.clase = this.clases.find(c => c.docente == this.rut);
+          this.claseD = this.clases.find(c => c.docente == this.rut);
         }
       }
     );
