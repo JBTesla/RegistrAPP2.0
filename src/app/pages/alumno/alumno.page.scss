@@ -1,0 +1,79 @@
+.fondo {
+    height: 80vh;
+    background-image: url("../../../assets/img/background.jpg");
+    background-size: cover;
+    text-align: center;
+  }
+  
+  ion-card {
+    --background: linear-gradient(#5adadf, #e2e3ee);
+    margin: 0 auto;
+    top: 5vh;
+    height: 250px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  
+    .imagen_login {
+      width: 45%;
+  }
+    .perfil_alumno {
+    width: 30%;
+    margin-top: 2%;
+    }
+  
+    #container {
+      text-align: center;
+    
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    
+    #container strong {
+      font-size: 20px;
+      line-height: 26px;
+    }
+    
+    #container p {
+      font-size: 16px;
+      line-height: 22px;
+    
+      color: #8c8c8c;
+    
+      margin: 0;
+    }
+    
+    #container a {
+      text-decoration: none;
+  
+    }
+
+    ion-item {
+        --background: none;
+
+        ion-label {
+            font-size: medium;
+            font-weight: bold;
+            color: black;
+            margin-top: -4%;
+        }
+
+        ion-input {
+            color: black;
+            font-size: small;
+        }
+    }
+  
+    ion-card-header {
+      ion-card-title {
+          font-size: x-large;
+          color: black;
+      }
+  }
+  
+  }

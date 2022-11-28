@@ -1,0 +1,24 @@
+<ion-content>
+  <div class="fondo">
+  <ion-card>
+    <img src="../../../assets/img/logo-duoc.png" alt="imagen_login" class="imagen_login"/>
+    <img src="../../../assets/img/perfil.png" style="width: 40px;"/>
+  <ion-card-content>
+    <ion-item>
+      <ion-label position="stacked" >rut: {{usuario.rut}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked" >Nombre: {{usuario.nom_completo}}</ion-label>
+    </ion-item>  
+    <ion-item>
+      <ion-label position="stacked" *ngIf="usuario.tipo_usuario == 'alumno'" >Semestre: {{usuario.semestre}}</ion-label>
+      <ion-label position="stacked" *ngIf="usuario.tipo_usuario == 'profesor'" >Asignatura: {{clase.nombre}}   {{clase.sigla_asignatura}}</ion-label>
+      <ion-label position="stacked" *ngIf="usuario.tipo_usuario == 'administrador'" >Privilegios: {{usuario.tipo_usuario}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked" >Correo: {{usuario.email}}</ion-label>
+    </ion-item>
+  </ion-card-content>
+  </ion-card>
+  </div>
+</ion-content>

@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    
+    <ion-button slot="end" routerLink="/home">
+      <ion-icon name="log-in-outline"></ion-icon>
+      Volver a home
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="fondo">
+    
+      <img src="../../../assets/img/forget_pass.png" alt="imagen_login" class="imagen_login" style="width: 250px;"/>
+      
+        <ion-card-title style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: white;">Recuperar Contraseña</ion-card-title>
+      
+      
+        <ion-item>
+          <ion-label>Correo: </ion-label>
+          <ion-input type="text" placeholder="Ingrese correo" [(ngModel)]="email"></ion-input>
+        </ion-item>
+        <ion-button expand="full"  (click)="recuperarPass()">Enviar correo de recuperacion</ion-button>
+      
+      <a style="color: white;" routerLink='/registrar'>Ir a registrar...</a>
+    
+  </div>
+</ion-content>
+

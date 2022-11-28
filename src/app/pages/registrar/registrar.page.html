@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    
+    <ion-button  slot="end" routerLink="/login">
+      <ion-icon name="log-in-outline"></ion-icon>
+      Volver a login
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+    <img src="../../../assets/img/logo-duoc.png" alt="imagen_login" class="imagen_login"/>
+      <h1 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: white; text-align: center;">Registro</h1>
+      
+      <form [formGroup]="usuario" (ngSubmit)="registrar()">
+        <ion-item>
+          <ion-label position="stacked">Rut</ion-label>
+          <ion-input TRIM type="text" [(ngModel)]="rut" placeholder="Ingrese rut" formControlName="rut"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Nombre completo</ion-label>
+          <ion-input type="text" placeholder="Ingrese nombre" formControlName="nom_completo"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">correo electronico</ion-label>
+          <ion-input TRIM type="text" placeholder="Ingrese correo" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Fecha nacimiento</ion-label>
+          <ion-input TRIM type="date" [(ngModel)]="fec_nac" placeholder="Ingrese fecha nacimiento" formControlName="fecha_nac" max="{{fechaMax}}"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Semestre</ion-label>
+          <ion-input TRIM type="number" placeholder="Ingrese semestre" formControlName="semestre"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Contraseña</ion-label>
+          <ion-input TRIM type="password" placeholder="Ingrese contraseña" formControlName="password"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Repita Contraseña</ion-label>
+          <ion-input TRIM type="password" placeholder="Ingrese nuevamente contraseña" [(ngModel)]="verificar_password" [ngModelOptions]="{standalone: 'true'}"></ion-input>
+        </ion-item>
+        <ion-button  type="submit" expand="full" >REGISTRAR</ion-button>
+      </form>
+    
+
+
+</ion-content>

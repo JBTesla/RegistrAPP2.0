@@ -1,0 +1,17 @@
+<ion-header>
+  
+</ion-header>
+<ion-content [fullscreen]="true">
+  <div class="fondo">
+    <ion-card>
+    <img src="../../../assets/img/qrcode.png" style="width: 45px;"/>
+    <ion-card-content>
+    <ion-item>
+    <ion-label position="stacked">Ingresar Codigo QR:</ion-label>
+    <ion-input [(ngModel)]="Qrcode"TRIM type="text" placeholder="ingrese codigo QR"></ion-input>
+    </ion-item>  
+    <ion-button expand="block" (click)="ingresarAsistencia()">Ingresar codigo</ion-button>
+  </ion-card-content>
+  </ion-card>
+  </div>
+</ion-content>

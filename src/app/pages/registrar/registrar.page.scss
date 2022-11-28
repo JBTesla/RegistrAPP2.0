@@ -1,0 +1,76 @@
+@use '../../../global.scss';
+
+.fondo {
+    height: 100vh;
+    background-image: url("../../..//assets/img/fondo_duoc.jpg");
+    background-size: cover;
+    text-align: center;
+}
+
+ion-card {
+    --background: linear-gradient(#5adadf, #e2e3ee);
+    margin: 0 auto;
+    top: 5vh;
+    height: 90vh;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    .custom_user {
+        width: 1%;
+    }
+    .imagen_login {
+        width: 25%;
+    }
+
+    ion-card-header {
+        ion-card-subtitle {
+            font-size: x-large;
+            color: black;
+        }
+
+        ion-card-title {
+            font-size: large;
+            color: black;
+        }
+    }
+
+    ion-item {
+        --background: none;
+
+        ion-label {
+            font-size: medium;
+            font-weight: bold;
+            color: black;
+            margin-top: -4%;
+        }
+
+        ion-input {
+            color: black;
+            font-size: small;
+        }
+    }
+
+    ion-button {
+        color: black;
+    }
+
+    a {
+        text-decoration: none;
+        font-size: small;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: bold;
+        color: black;
+    }
+}
+
+
+@media (max-width: 400px) {
+    .fondo {
+        ion-card {
+            width: 80vw;
+        }
+    }
+}

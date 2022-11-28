@@ -1,0 +1,58 @@
+
+<ion-content [fullscreen]="true">
+  <img src="/../assets/img/logo-duoc.png">
+  <form [formGroup]="usuario" (ngSubmit)="registrar()">
+    <ion-item>
+      <ion-label position="stacked">Rut</ion-label>
+      <ion-input TRIM type="text" placeholder="Ingrese rut" formControlName="rut"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Nombre completo</ion-label>
+      <ion-input type="text" placeholder="Ingrese nombre" formControlName="nom_completo"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">correo electronico</ion-label>
+      <ion-input TRIM type="text" placeholder="Ingrese correo" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-select placeholder="tipo de usuario" formControlName="tipo_usuario">
+        <ion-select-option *ngFor="let tipo of tipoUser">{{tipo.tipo_usu}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Fecha nacimiento</ion-label>
+      <ion-input TRIM type="date" placeholder="Ingrese fecha nacimiento" formControlName="fecha_nac"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label  position="stacked">Semestre</ion-label>
+      <ion-input TRIM type="number" placeholder="Ingrese semestre" formControlName="semestre"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Contraseña</ion-label>
+      <ion-input TRIM type="password" placeholder="Ingrese contraseña" formControlName="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Repita Contraseña</ion-label>
+      <ion-input TRIM type="password" placeholder="Ingrese nuevamente contraseña" [(ngModel)]="verificar_password"
+        [ngModelOptions]="{standalone: 'true'}"></ion-input>
+    </ion-item>
+    <ion-card>
+    <ion-button type="submit">REGISTRAR</ion-button>
+    <ion-button (click)="modificar()">MODIFICAR</ion-button>
+    <ion-button (click)="limpiar()">LIMPIAR</ion-button>
+    </ion-card>
+  </form>
+  <h3>LISTA DE USUARIOS</h3>
+  <ion-list *ngFor="let usuario of usuarios">
+    <ion-card>
+    <p>Rut: {{usuario.rut}}</p>
+    <p>Nombre: {{usuario.nom_completo}}</p>  
+    <p>Fecha Nac: {{usuario.fecha_nac}}</p> 
+    <p *ngIf="usuario.tipo_usuario == 'alumno'">Semestre: {{usuario.semestre}}</p>
+    <p *ngIf="usuario.tipo_usuario == 'administrador'">Privilegios: {{usuario.tipo_usuario}}</p>
+    <p><ion-button color="warning" (click)="buscar(usuario.id)">Buscar</ion-button> <ion-button color="danger" (click)="eliminar(usuario.id)">Eliminar</ion-button></p>
+  </ion-card>
+  </ion-list>
+
+</ion-content>
+

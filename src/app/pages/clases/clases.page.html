@@ -1,0 +1,49 @@
+
+<ion-content>
+  <img src="/../assets/img/logo-duoc.png">
+  <form [formGroup]="clase" (ngSubmit)="crearClase()">
+    <ion-item>
+      <ion-label position="stacked">Codigo Clase</ion-label>
+      <ion-input TRIM type="text" placeholder="Ingrese codigo" formControlName="cod_clase"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Nombre clase</ion-label>
+      <ion-input type="text" placeholder="Ingrese nombre clase " formControlName="nombre"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Sigla de la asignatura</ion-label>
+      <ion-input TRIM type="text" placeholder="Ingrese sigla" formControlName="sigla_asignatura"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Semestre</ion-label>
+      <ion-input TRIM type="number" placeholder="ingrese semestre" formControlName="semestre"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-select placeholder="Docente" formControlName="docente">
+        <ion-select-option *ngFor="let d of docentes" value="{{d.rut}}">{{d.nom_completo}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-select placeholder="Horario" formControlName="horario">
+        <ion-select-option *ngFor="let jornada of horario">{{jornada.tipo_horario}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-card>
+    <ion-button type="submit">Crear Clase</ion-button>
+    <ion-button (click)="modificarClase()">Modificar</ion-button>
+    <ion-button (click)="limpiar()">Limpiar</ion-button>
+    </ion-card>
+  </form>
+  <h3>Lista de clases</h3>
+  <ion-list *ngFor="let clase of clases">
+    <ion-card>
+    <p>Codigo de la clase: {{clase.cod_clase}}</p> 
+    <p>Nombre de la clase: {{clase.nombre}}</p>
+    <p>Sigla asignatura: {{clase.sigla_asignatura}}</p> 
+    <p>Semestre: {{clase.semestre}}</p> 
+    <p>Docente: {{clase.docente}}</p>
+    <p>Horario: {{clase.horario}}</p>
+   <p><ion-button color="warning" (click)="buscarClase(clase.cod_clase)">Buscar</ion-button> <ion-button color="danger" (click)="eliminarClase(clase.cod_clase)">Eliminar</ion-button></p> 
+  </ion-card>
+  </ion-list>
+</ion-content>
