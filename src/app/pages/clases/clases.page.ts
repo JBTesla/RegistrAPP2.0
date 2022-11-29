@@ -21,7 +21,6 @@ export class ClasesPage implements OnInit {
 
   clase = new FormGroup({
     id : new FormControl(''),
-    cod_clase: new FormControl(''),
     nombre:new FormControl('',),
     sigla_asignatura: new FormControl(''),
     semestre: new FormControl(''),
@@ -109,7 +108,6 @@ export class ClasesPage implements OnInit {
   modificarClase(){
     let id = this.clase.controls.id.value;
     let claseModific={
-      cod_clase: this.clase.controls.cod_clase.value,
       nombre: this.clase.controls.nombre.value,
       sigla_asignatura: this.clase.controls.sigla_asignatura.value,
       semestre: this.clase.controls.semestre.value,
