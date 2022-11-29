@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { FireService } from 'src/app/services/fire.service';
 import { UserService } from 'src/app/services/user.service';
+import { ToastController } from '@ionic/angular';
+import { toastController } from '@ionic/core';
 
 
 @Component({
@@ -37,7 +39,8 @@ export class ProfesorPage implements OnInit {
   constructor(private userService:UserService,
     private activatedRoute: ActivatedRoute,
     private loadingCtrl: LoadingController,
-    private fireService:FireService){}
+    private fireService:FireService,
+    private toast:ToastController){}
 
   async ngOnInit() {
     this.rut = this.activatedRoute.snapshot.paramMap.get('rut');
@@ -83,12 +86,10 @@ async generarCodigo(cod_class){
       alumnos:[]
     }
     var respuesta = await this.fireService.agregarAsistencia('asistencia', this.asistencia);
-    console.log(respuesta)
-    this.asistencia.cod_asistencia=respuesta
-    console.log(this.asistencia.cod_asistencia)
-    this.clase.asistencia=respuesta
-    this.fireService.modificar('clases',cod_class,this.clase)
-    this.fireService.modificar('asistencia',respuesta,this.asistencia)
+    this.asistencia.cod_asistencia=respuesta;
+    this.clase.asistencia=respuesta;
+    this.fireService.modificar('clases',cod_class,this.clase);
+    this.fireService.modificar('asistencia',respuesta,this.asistencia);
     if(respuesta){
       this.cargando('Creando asistencia...');
       this.cargarClase();
@@ -97,9 +98,7 @@ async generarCodigo(cod_class){
       }
       console.log(respuesta)
     }else{
-      alert('la asistencia de hoy ya está creada!')
-      console.log(respuesta)
-      console.log(this.asistencia)
+      this.toastError();
     }
   }
 
@@ -109,5 +108,12 @@ async generarCodigo(cod_class){
       duration: 2000
     });
     loading.present();
+  }
+  async toastError() {
+    const toast = await this.toast.create({
+      message: 'la asistencia de hoy ya está creada!',
+      duration: 3000
+    });
+    toast.present();
   }
 }

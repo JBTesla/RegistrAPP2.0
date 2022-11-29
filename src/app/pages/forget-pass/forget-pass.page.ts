@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { FireService } from 'src/app/services/fire.service';
 import { UserService } from 'src/app/services/user.service';
+import { AlertController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-forget-pass',
@@ -16,7 +17,8 @@ export class ForgetPassPage implements OnInit {
   constructor(private toastController: ToastController,
      private router:Router,
      private usuarioService: UserService,
-     private fireService: FireService) { }
+     private fireService: FireService,
+     private loadingCtrl: LoadingController) { }
 
 ngOnInit() {
     this.cargarUsuarios();
@@ -39,11 +41,19 @@ recuperarPass(){
   var validarEmail= this.usuarios.find(user => user.email == this.email);
  if (validarEmail != undefined) {
   if (validarEmail.email == this.email) {
-    alert('Se ha enviado un correo electronico de recuperación!');
+    this.cargando('Se ha enviado un correo electronico de recuperación!');
   }
  }else{
   this.tostadaError();
  }
+}
+
+async cargando(mensaje){
+  const loading = await this.loadingCtrl.create({
+    message: mensaje,
+    duration: 1000
+  });
+  loading.present();
 }
   //toast
   async tostadaError() {

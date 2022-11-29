@@ -3,6 +3,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { LoadingController } from '@ionic/angular';
 import { FireService } from 'src/app/services/fire.service';
 import { UserService } from 'src/app/services/user.service';
+import { ToastController } from '@ionic/angular';
+import { toastController } from '@ionic/core';
 
 @Component({
   selector: 'app-clases',
@@ -37,7 +39,8 @@ export class ClasesPage implements OnInit {
 
   constructor(private usuarioService: UserService,
     private loadingCtrl: LoadingController,
-    private fireService:FireService) { }
+    private fireService:FireService,
+    private toast:ToastController) { }
 
   ngOnInit() {
     this.cargarUsuarios();
@@ -80,7 +83,7 @@ export class ClasesPage implements OnInit {
    this.cargarClases();
   } else {
     /* console.log(respuesta) */
-    alert('clase ya existe!');
+   this.toastError();
   }
   }
   
@@ -130,5 +133,14 @@ export class ClasesPage implements OnInit {
     });
     loading.present();
   }
+
+  async toastError() {
+    const toast = await this.toast.create({
+      message: 'Clase ya existe!',
+      duration: 3000
+    });
+    toast.present();
+  }
 }
+
 

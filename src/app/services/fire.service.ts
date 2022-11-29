@@ -154,5 +154,13 @@ login (correo, clave, lista): boolean{
   }
   return false;
 }
+validaRut (rut , lista): boolean{
+  for(let u of lista){
+    if(u.rut == rut){
+      return true;
+    }
+  }
+  return false;
+}
 
 }

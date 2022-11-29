@@ -5,6 +5,8 @@ import { ValidatorsService } from 'src/app/services/validators.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FireService } from 'src/app/services/fire.service';
+import { ToastController } from '@ionic/angular';
+import { toastController } from '@ionic/core';
 
 @Component({
   selector: 'app-administrador',
@@ -54,7 +56,8 @@ export class AdministradorPage implements OnInit {
     private loadingCtrl: LoadingController,
     private validators:ValidatorsService,
     private router:Router,
-    private fireService:FireService ){
+    private fireService:FireService,
+    private toast:ToastController){
   }
 
   ngOnInit() {
@@ -79,29 +82,29 @@ export class AdministradorPage implements OnInit {
 async registrar() {
   //validación de salida para buscar un rut válido.
   if (!this.validators.validarRut(this.usuario.controls.rut.value)) {
-    alert('Rut incorrecto!');
+    this.toastError1();
     return;
   }
   //validación de salida para verificar que persona tenga al menos 17 años.
   if (!this.validators.validarEdadMinima(17, this.usuario.controls.fecha_nac.value)) {
-    alert('Edad mínima 17 años!');
+    this.toastError2();
     return;
   }
   //validación de coincidencia de contraseñas.
   if (this.usuario.controls.password.value != this.verificar_password) {
-    alert('Contraseñas no coinciden!');
+    this.toastError3();
     return;
   }
   var respuesta = this.fireService.agregar('usuarios', this.usuario.value);
   console.log(respuesta)
   if (respuesta) {
-    alert('Usuario registrado!');
+    this.cargando('Registrando usuario...');
     this.v_agregar=true;
     this.usuario.reset();
     this.verificar_password = '';
     this.cargarUsuarios();
   } else {
-    alert('Usuario ya existe!');
+    this.toastError4();
   }
 }
 
@@ -162,5 +165,32 @@ eliminar(id){
     });
     loading.present();
   }
-
+  async toastError1() {
+    const toast = await this.toast.create({
+      message: 'Rut Incorrecto!',
+      duration: 3000
+    });
+    toast.present();
+  }
+  async toastError2() {
+    const toast = await this.toast.create({
+      message: 'Edad minima 17 años!',
+      duration: 3000
+    });
+    toast.present();
+  }
+  async toastError3() {
+    const toast = await this.toast.create({
+      message: 'contraseñas no coinciden!',
+      duration: 3000
+    });
+    toast.present();
+  }
+  async toastError4() {
+    const toast = await this.toast.create({
+      message: 'Usuario ya existe!',
+      duration: 3000
+    });
+    toast.present();
+  }
 }

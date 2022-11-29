@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavigationExtras, Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
+import { toastController } from '@ionic/core';
 import { FireService } from 'src/app/services/fire.service';
 /* import { UserService } from 'src/app/services/user.service'; */
 
@@ -22,7 +24,8 @@ export class LoginPage implements OnInit {
 
   constructor(private router: Router,
     /*private userService: UserService,*/
-     private fireService:FireService) { }
+     private fireService:FireService,
+     private toast:ToastController) { }
 
   administradorDefault: any;
   profesorDefault: any;
@@ -100,9 +103,18 @@ cargarUsuarios(){
       this.router.navigate(['/home/bienvenido'], navigationExtras);
       this.fireService.isAuthenticated.next(true);
     }else{
-      alert('Usuario o contraseña incorrectos!')}
+      this.toastError();}
     }
-  }
+
+    async toastError() {
+      const toast = await this.toast.create({
+        message: 'Usuario o contraseña incorrectos.',
+        duration: 3000
+      });
+      toast.present();
+    }
+    
+}
 
 /*     for(let u of this.usuarios){
       console.log(u)

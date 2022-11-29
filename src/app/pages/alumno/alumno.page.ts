@@ -74,6 +74,7 @@ async ingresarAsistencia2(id){
           this.asistencia.alumnos.push(this.rut)
           this.fireService.agregarAlumno('asistencia', id ,this.asistencia);
           this.cargando('Ingresando asistencia...');
+          this.Qrcode.reset();
         }
       );
     }
