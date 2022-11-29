@@ -22,7 +22,7 @@ describe('PRUEBA UNITARIAS: administrador', ()=>{
   });
 
 
-  it('1. Levantar la página home', ()=>{
+  it('1. Levantar la página admin', ()=>{
     const fixture = TestBed.createComponent(AdministradorPage);
     const app = fixture.componentInstance;
     
@@ -34,8 +34,18 @@ describe('PRUEBA UNITARIAS: administrador', ()=>{
     const app = fixture.componentInstance;
 
     let rut = app.usuario.controls['rut'];
-    rut.setValue('17888444-k');
+    let nom_completo = app.usuario.controls['nom_completo'];
+    let email = app.usuario.controls['email'];
+    let fecha_nac = app.usuario.controls['fecha_nac'];
+    let semestre = app.usuario.controls['semestre'];
+    let password = app.usuario.controls['password'];
 
+    rut.setValue('17888444-k');
+    nom_completo.setValue('error.exe');
+    email.setValue('er.ro@gmail.cl');
+    fecha_nac.setValue('2022-09-07');
+    semestre.setValue('4');
+    password.setValue('error123');
     expect(app.usuario.valid).toBeFalse();
   });
 
@@ -44,9 +54,19 @@ describe('PRUEBA UNITARIAS: administrador', ()=>{
     const app = fixture.componentInstance;
     
     let rut = app.usuario.controls['rut'];
-    let nombre = app.usuario.controls['nombre'];
-    rut.setValue('17888444-k');
-    nombre.setValue('Alambrito');
+    let nom_completo = app.usuario.controls['nom_completo'];
+    let email = app.usuario.controls['email'];
+    let fecha_nac = app.usuario.controls['fecha_nac'];
+    let semestre = app.usuario.controls['semestre'];
+    let password = app.usuario.controls['password'];
+   
+    rut.setValue('11.694.566-5');
+    nom_completo.setValue('elza pato');
+    email.setValue('er.ro@gmail.cl');
+    fecha_nac.setValue('2022-09-07');
+    semestre.setValue('4');
+    password.setValue('error123');
+    expect(app.usuario.valid).toBeFalse();
     
     expect(app.usuario.valid).toBeTrue();
   });
@@ -57,9 +77,19 @@ describe('PRUEBA UNITARIAS: administrador', ()=>{
     const app = fixture.componentInstance;
     
     let rut = app.usuario.controls['rut'];
-    let nombre = app.usuario.controls['nom_completo'];
+    let nom_completo = app.usuario.controls['nom_completo'];
+    let email = app.usuario.controls['email'];
+    let fecha_nac = app.usuario.controls['fecha_nac'];
+    let semestre = app.usuario.controls['semestre'];
+    let password = app.usuario.controls['password'];
+    
     rut.setValue('20.047.654-9');
-    nombre.setValue('admin');
+    nom_completo.setValue('admin');
+    email.setValue('admin@duocuc.cl');
+    fecha_nac.setValue('1990-09-07');
+    semestre.setValue('4');
+    password.setValue('adm123');
+    expect(app.usuario.valid).toBeFalse();
   
     app.registrar();
 
