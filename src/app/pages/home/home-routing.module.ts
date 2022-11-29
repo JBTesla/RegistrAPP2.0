@@ -35,6 +35,10 @@ const routes: Routes = [
         path: 'bienvenido',
         loadChildren: () => import('../bienvenido/bienvenido.module').then( m => m.BienvenidoPageModule)
       },
+      {
+        path: 'api',
+        loadChildren: () => import('../api/api.module').then( m => m.ApiPageModule)
+      },
     
     ]
   }

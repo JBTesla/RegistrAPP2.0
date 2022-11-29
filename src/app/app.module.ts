@@ -14,6 +14,8 @@ import { AngularFireModule } from'@angular/fire/compat'
 
 import { environment } from 'src/environments/environment'
 
+import { HttpClientModule } from '@angular/common/http'
+
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, 
@@ -21,6 +23,7 @@ import { environment } from 'src/environments/environment'
     AppRoutingModule, 
     IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    HttpClientModule,
   ],
   providers: [Geolocation,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

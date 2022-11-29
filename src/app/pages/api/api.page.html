@@ -1,0 +1,15 @@
+<ion-header>
+</ion-header>
+
+<ion-content>
+<h1>¡Api Personajes!</h1>
+<ion-list *ngFor="let p of personajes">
+  <ion-item>
+    <ion-label>
+      <img src="{{p.image}}" alt="">
+      <p>{{p.character}}</p>
+      <p>{{p.quote}}</p>
+    </ion-label>
+  </ion-item>
+</ion-list>
+</ion-content>

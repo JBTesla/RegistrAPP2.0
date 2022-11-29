@@ -1,9 +1,16 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>ERROR!!</ion-title>
+    <h1>ERROR 404</h1>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-  <div class="fondo"></div>
+  <ion-item>
+  </ion-item>
+  <h1>Llegaste tan lejos que estas en Springfield!</h1>
+  <div *ngFor="let p of personajes">
+    <ion-card>
+      <img src="{{p.image}}" alt="">
+      <h1>{{p.quote}}</h1>
+    </ion-card>
+  </div>
 </ion-content>

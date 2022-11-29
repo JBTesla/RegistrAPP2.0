@@ -23,6 +23,7 @@ export class PerfilPage implements OnInit {
     private fireService:FireService) {}
 
 ngOnInit() {
+  
   this.rut = this.activatedRoute.snapshot.paramMap.get('rut');
 /*   this.clase = this.fireService.obtenerClase('clases', this.rut); */
   this.cargarUsuario();

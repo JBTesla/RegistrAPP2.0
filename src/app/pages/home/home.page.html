@@ -22,6 +22,11 @@
         <ion-label>Administrar</ion-label>
         <ion-badge>{{cantidadUsu}}</ion-badge>
       </ion-tab-button>
+      <ion-tab-button tab="api" *ngIf="usuario.tipo_usuario == 'administrador'">
+        <ion-icon name="file-tray-stacked-outline"></ion-icon>
+        <ion-label>api</ion-label>
+        <ion-badge>{{cantidadUsu}}</ion-badge>
+      </ion-tab-button>
       <ion-tab-button tab="bienvenido">
         <ion-icon name="home"></ion-icon>
         <ion-label>Home</ion-label>
