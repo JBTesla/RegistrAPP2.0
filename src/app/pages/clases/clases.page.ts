@@ -83,6 +83,7 @@ export class ClasesPage implements OnInit {
     alert('clase ya existe!');
   }
   }
+  
   eliminarClase(id){
       this.fireService.eliminarClases('clases',id);
       this.cargando('actualizando clases...');

@@ -90,7 +90,8 @@ obtenerClases(coleccion){
 
 obtenerClase(coleccion, id){
   try {
-   return this.fire.collection(coleccion).doc(id).get();
+   let aux = this.fire.collection(coleccion).doc(id).get();
+   return aux
   } catch (error) {
     console.log('ERROR: ', error)
   }

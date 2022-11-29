@@ -17,11 +17,12 @@ export class AlumnoPage implements OnInit {
     private fireService:FireService) { }
   rut: string;
   clases:any[]=[];
-  clase: any[]=[];
+  clase: any ={};
   KEY_CLASES = 'clases'
 
   asistencias: any[]=[];
-  asisntencia: any;
+  asistencia: any;
+  asistenciaB: any[]=[];
   KEY_ASISTENCIAS = 'asistencias'
 
   Qrcode: any;
@@ -40,33 +41,45 @@ cargarClases(){
        let claseJson = c.payload.doc.data();
        claseJson['id'] = c.payload.doc.id;
        this.clases.push(claseJson);
+/*        this.clase = this.clases.find(u => u.id == this.Qrcode) */
      }
    }
  );
 }
 
 cargarAsistencias(){
-  this.fireService.obtenerClases('asistencias').subscribe(
+  this.fireService.obtenerClases('asistencia').subscribe(
    (data:any) => {
      this.asistencias = [];
      for(let a of data){
        let asistenciaJson = a.payload.doc.data();
        this.asistencias.push(asistenciaJson);
+       this.asistencia = this.asistencias.find(a  => a.cod_clase == this.Qrcode)
+       this.asistenciaB = this.asistencias.find(a  => a.cod_clase == this.Qrcode)
      }
    }
  );
 }
-
 /* cargarAsistencia(){
   this.fireService.obtenerAsistencia('asistencia',).
 } */
-
-ingresarAsistencia(asisntenciaAl){
-  //console.log(this.rut): verificar el rut
-    this.clase = this.clases.find(u => u.cod_clase == this.Qrcode)
-    this.fireService.agregarAlumno('asistencia', asisntenciaAl ,this.rut);
-    this.cargando('Ingresando a la asistencia...');
+async ingresarAsistencia2(id){
+  (await this.fireService.obtenerClase('clases', id)).subscribe(
+    (data:any)=>{
+      this.clase = data.data()
+      this.fireService.obtenerAsistencia('asistencia', this.clase.asistencia).subscribe(
+        (data:any)=>{
+          this.asistencia = data.data()
+          console.log(this.asistencia)
+          this.asistencia.alumnos.push(this.rut)
+          this.fireService.agregarAlumno('asistencia', id ,this.asistencia);
+          this.cargando('Ingresando asistencia...');
+        }
+      );
+    }
+  );
 }
+
 async cargando(mensaje){
   const loading = await this.loadingCtrl.create({
     message: mensaje,
